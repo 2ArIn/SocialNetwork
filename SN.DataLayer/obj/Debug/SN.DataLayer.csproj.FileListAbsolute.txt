@@ -1,0 +1,16 @@
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.DataLayer\bin\Debug\SN.DataLayer.dll.config
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.DataLayer\bin\Debug\SN.DataLayer.dll
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.DataLayer\bin\Debug\SN.DataLayer.pdb
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.DataLayer\bin\Debug\EntityFramework.dll
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.DataLayer\bin\Debug\EntityFramework.SqlServer.dll
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.DataLayer\bin\Debug\EntityFramework.xml
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.DataLayer\bin\Debug\EntityFramework.SqlServer.xml
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.DataLayer\obj\Debug\SN.DataLayer.csprojAssemblyReference.cache
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.DataLayer\obj\Debug\SN.DataLayer.csproj.CoreCompileInputs.cache
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.DataLayer\obj\Debug\SN.DataLayer.csproj.CopyComplete
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.DataLayer\obj\Debug\SN.DataLayer.dll
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.DataLayer\obj\Debug\SN.DataLayer.pdb
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.DataLayer\bin\Debug\SN.ViewModel.dll
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.DataLayer\bin\Debug\SN.ViewModel.pdb
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.DataLayer\bin\Debug\SN.Utility.dll
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.DataLayer\bin\Debug\SN.Utility.pdb

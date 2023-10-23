@@ -1,0 +1,6 @@
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.Business\bin\Debug\SN.Business.dll
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.Business\bin\Debug\SN.Business.pdb
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.Business\obj\Debug\SN.Business.csprojAssemblyReference.cache
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.Business\obj\Debug\SN.Business.csproj.CoreCompileInputs.cache
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.Business\obj\Debug\SN.Business.dll
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.Business\obj\Debug\SN.Business.pdb

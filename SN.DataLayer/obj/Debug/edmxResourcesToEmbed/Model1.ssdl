@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SocialNetDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="cid" />
+    </Key>
+    <Property Name="cid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cusername" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="cdate" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ctext" Type="nvarchar(max)" />
+    <Property Name="pid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="mid" />
+    </Key>
+    <Property Name="mid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="musername" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="mdate" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="mtext" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="MyFollow">
+    <Key>
+      <PropertyRef Name="fid" />
+    </Key>
+    <Property Name="fid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="followerusername" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="followingusername" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MyLike">
+    <Key>
+      <PropertyRef Name="lid" />
+    </Key>
+    <Property Name="lid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pid" Type="int" Nullable="false" />
+    <Property Name="lusername" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ldate" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MyUser">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="mobile" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="150" />
+    <Property Name="about" Type="nvarchar" MaxLength="500" />
+    <Property Name="uimage" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="pid" />
+    </Key>
+    <Property Name="pid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pcaption" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="pimage" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ptext" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="pdate" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="pusername" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Comment_CUserName">
+    <End Role="MyUser" Type="Self.MyUser" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyUser">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="cusername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_Post">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="pid" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="pid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Follows_FollowerUserName">
+    <End Role="MyUser" Type="Self.MyUser" Multiplicity="1" />
+    <End Role="MyFollow" Type="Self.MyFollow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyUser">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="MyFollow">
+        <PropertyRef Name="followerusername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_MUser">
+    <End Role="MyUser" Type="Self.MyUser" Multiplicity="1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyUser">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="musername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_User">
+    <End Role="MyUser" Type="Self.MyUser" Multiplicity="1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyUser">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="username" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyFollower_MyUser">
+    <End Role="MyUser" Type="Self.MyUser" Multiplicity="1" />
+    <End Role="MyFollow" Type="Self.MyFollow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyUser">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="MyFollow">
+        <PropertyRef Name="followingusername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyLike_LUserName">
+    <End Role="MyUser" Type="Self.MyUser" Multiplicity="1" />
+    <End Role="MyLike" Type="Self.MyLike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyUser">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="MyLike">
+        <PropertyRef Name="lusername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyLike_Post">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="MyLike" Type="Self.MyLike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="pid" />
+      </Principal>
+      <Dependent Role="MyLike">
+        <PropertyRef Name="pid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Post_UserName">
+    <End Role="MyUser" Type="Self.MyUser" Multiplicity="1" />
+    <End Role="Post" Type="Self.Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyUser">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="pusername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SocialNetDBModelStoreContainer">
+    <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MyFollow" EntityType="Self.MyFollow" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MyLike" EntityType="Self.MyLike" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MyUser" EntityType="Self.MyUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Comment_CUserName" Association="Self.FK_Comment_CUserName">
+      <End Role="MyUser" EntitySet="MyUser" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Post" Association="Self.FK_Comment_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Follows_FollowerUserName" Association="Self.FK_Follows_FollowerUserName">
+      <End Role="MyUser" EntitySet="MyUser" />
+      <End Role="MyFollow" EntitySet="MyFollow" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_MUser" Association="Self.FK_Message_MUser">
+      <End Role="MyUser" EntitySet="MyUser" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_User" Association="Self.FK_Message_User">
+      <End Role="MyUser" EntitySet="MyUser" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyFollower_MyUser" Association="Self.FK_MyFollower_MyUser">
+      <End Role="MyUser" EntitySet="MyUser" />
+      <End Role="MyFollow" EntitySet="MyFollow" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyLike_LUserName" Association="Self.FK_MyLike_LUserName">
+      <End Role="MyUser" EntitySet="MyUser" />
+      <End Role="MyLike" EntitySet="MyLike" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyLike_Post" Association="Self.FK_MyLike_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="MyLike" EntitySet="MyLike" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_UserName" Association="Self.FK_Post_UserName">
+      <End Role="MyUser" EntitySet="MyUser" />
+      <End Role="Post" EntitySet="Post" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

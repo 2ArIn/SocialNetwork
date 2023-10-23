@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="27982919b7184c5caaea1a0e3a101f26" Name="Diagram1">
+        <EntityTypeShape EntityType="SocialNetDBModel.Comment" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocialNetDBModel.Message" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocialNetDBModel.MyLike" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocialNetDBModel.MyUser" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocialNetDBModel.Post" Width="1.5" PointX="3" PointY="19.375" IsExpanded="true" />
+        <AssociationConnector Association="SocialNetDBModel.FK_Comment_CUserName" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialNetDBModel.FK_Comment_Post" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialNetDBModel.FK_Message_MUser" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialNetDBModel.FK_Message_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialNetDBModel.FK_MyLike_LUserName" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialNetDBModel.FK_MyLike_Post" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialNetDBModel.FK_Post_UserName" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SocialNetDBModel.MyFollow" Width="1.5" PointX="3" PointY="4.5" />
+        <AssociationConnector Association="SocialNetDBModel.FK_Follows_FollowerUserName1" />
+        <AssociationConnector Association="SocialNetDBModel.FK_MyFollower_MyUser1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

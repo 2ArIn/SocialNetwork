@@ -1,0 +1,6 @@
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.ViewModel\bin\Debug\SN.ViewModel.dll
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.ViewModel\bin\Debug\SN.ViewModel.pdb
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.ViewModel\obj\Debug\SN.ViewModel.csprojAssemblyReference.cache
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.ViewModel\obj\Debug\SN.ViewModel.csproj.CoreCompileInputs.cache
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.ViewModel\obj\Debug\SN.ViewModel.dll
+E:\dev\project\VS2019\SocialNetwork\MYSocialNetwork\SN.ViewModel\obj\Debug\SN.ViewModel.pdb

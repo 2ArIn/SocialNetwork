@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SocialNetDBModelStoreContainer" CdmEntityContainer="SocialNetDBEntities">
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="SocialNetDBModel.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="cid" ColumnName="cid" />
+          <ScalarProperty Name="cusername" ColumnName="cusername" />
+          <ScalarProperty Name="cdate" ColumnName="cdate" />
+          <ScalarProperty Name="ctext" ColumnName="ctext" />
+          <ScalarProperty Name="pid" ColumnName="pid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Messages">
+      <EntityTypeMapping TypeName="SocialNetDBModel.Message">
+        <MappingFragment StoreEntitySet="Message">
+          <ScalarProperty Name="mid" ColumnName="mid" />
+          <ScalarProperty Name="musername" ColumnName="musername" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="mdate" ColumnName="mdate" />
+          <ScalarProperty Name="mtext" ColumnName="mtext" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MyLikes">
+      <EntityTypeMapping TypeName="SocialNetDBModel.MyLike">
+        <MappingFragment StoreEntitySet="MyLike">
+          <ScalarProperty Name="lid" ColumnName="lid" />
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="lusername" ColumnName="lusername" />
+          <ScalarProperty Name="ldate" ColumnName="ldate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MyUsers">
+      <EntityTypeMapping TypeName="SocialNetDBModel.MyUser">
+        <MappingFragment StoreEntitySet="MyUser">
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="about" ColumnName="about" />
+          <ScalarProperty Name="uimage" ColumnName="uimage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Posts">
+      <EntityTypeMapping TypeName="SocialNetDBModel.Post">
+        <MappingFragment StoreEntitySet="Post">
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="pcaption" ColumnName="pcaption" />
+          <ScalarProperty Name="pimage" ColumnName="pimage" />
+          <ScalarProperty Name="ptext" ColumnName="ptext" />
+          <ScalarProperty Name="pdate" ColumnName="pdate" />
+          <ScalarProperty Name="pusername" ColumnName="pusername" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MyFollows">
+      <EntityTypeMapping TypeName="SocialNetDBModel.MyFollow">
+        <MappingFragment StoreEntitySet="MyFollow">
+          <ScalarProperty Name="followingusername" ColumnName="followingusername" />
+          <ScalarProperty Name="followerusername" ColumnName="followerusername" />
+          <ScalarProperty Name="fid" ColumnName="fid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

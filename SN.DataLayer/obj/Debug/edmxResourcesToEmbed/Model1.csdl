@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SocialNetDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="cid" />
+    </Key>
+    <Property Name="cid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cusername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="cdate" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ctext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="pid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MyUser" Relationship="Self.FK_Comment_CUserName" FromRole="Comment" ToRole="MyUser" />
+    <NavigationProperty Name="Post" Relationship="Self.FK_Comment_Post" FromRole="Comment" ToRole="Post" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="mid" />
+    </Key>
+    <Property Name="mid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="musername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="mdate" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="mtext" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MyUser" Relationship="Self.FK_Message_MUser" FromRole="Message" ToRole="MyUser" />
+    <NavigationProperty Name="MyUser1" Relationship="Self.FK_Message_User" FromRole="Message" ToRole="MyUser" />
+  </EntityType>
+  <EntityType Name="MyLike">
+    <Key>
+      <PropertyRef Name="lid" />
+    </Key>
+    <Property Name="lid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pid" Type="Int32" Nullable="false" />
+    <Property Name="lusername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ldate" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="MyUser" Relationship="Self.FK_MyLike_LUserName" FromRole="MyLike" ToRole="MyUser" />
+    <NavigationProperty Name="Post" Relationship="Self.FK_MyLike_Post" FromRole="MyLike" ToRole="Post" />
+  </EntityType>
+  <EntityType Name="MyUser">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="about" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="uimage" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_CUserName" FromRole="MyUser" ToRole="Comment" />
+    <NavigationProperty Name="Messages" Relationship="Self.FK_Message_MUser" FromRole="MyUser" ToRole="Message" />
+    <NavigationProperty Name="Messages1" Relationship="Self.FK_Message_User" FromRole="MyUser" ToRole="Message" />
+    <NavigationProperty Name="MyLikes" Relationship="Self.FK_MyLike_LUserName" FromRole="MyUser" ToRole="MyLike" />
+    <NavigationProperty Name="Posts" Relationship="Self.FK_Post_UserName" FromRole="MyUser" ToRole="Post" />
+    <NavigationProperty Name="MyFollows" Relationship="SocialNetDBModel.FK_Follows_FollowerUserName1" FromRole="MyUser" ToRole="MyFollow" />
+    <NavigationProperty Name="MyFollows1" Relationship="SocialNetDBModel.FK_MyFollower_MyUser1" FromRole="MyUser" ToRole="MyFollow" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="pid" />
+    </Key>
+    <Property Name="pid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pcaption" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pimage" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ptext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pdate" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pusername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Post" FromRole="Post" ToRole="Comment" />
+    <NavigationProperty Name="MyLikes" Relationship="Self.FK_MyLike_Post" FromRole="Post" ToRole="MyLike" />
+    <NavigationProperty Name="MyUser" Relationship="Self.FK_Post_UserName" FromRole="Post" ToRole="MyUser" />
+  </EntityType>
+  <Association Name="FK_Comment_CUserName">
+    <End Role="MyUser" Type="Self.MyUser" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyUser">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="cusername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_Post">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="pid" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="pid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_MUser">
+    <End Role="MyUser" Type="Self.MyUser" Multiplicity="1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyUser">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="musername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_User">
+    <End Role="MyUser" Type="Self.MyUser" Multiplicity="1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyUser">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="username" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyLike_LUserName">
+    <End Role="MyUser" Type="Self.MyUser" Multiplicity="1" />
+    <End Role="MyLike" Type="Self.MyLike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyUser">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="MyLike">
+        <PropertyRef Name="lusername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyLike_Post">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="MyLike" Type="Self.MyLike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="pid" />
+      </Principal>
+      <Dependent Role="MyLike">
+        <PropertyRef Name="pid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Post_UserName">
+    <End Role="MyUser" Type="Self.MyUser" Multiplicity="1" />
+    <End Role="Post" Type="Self.Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyUser">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="pusername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SocialNetDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="Messages" EntityType="Self.Message" />
+    <EntitySet Name="MyLikes" EntityType="Self.MyLike" />
+    <EntitySet Name="MyUsers" EntityType="Self.MyUser" />
+    <EntitySet Name="Posts" EntityType="Self.Post" />
+    <AssociationSet Name="FK_Comment_CUserName" Association="Self.FK_Comment_CUserName">
+      <End Role="MyUser" EntitySet="MyUsers" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Post" Association="Self.FK_Comment_Post">
+      <End Role="Post" EntitySet="Posts" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_MUser" Association="Self.FK_Message_MUser">
+      <End Role="MyUser" EntitySet="MyUsers" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_User" Association="Self.FK_Message_User">
+      <End Role="MyUser" EntitySet="MyUsers" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyLike_LUserName" Association="Self.FK_MyLike_LUserName">
+      <End Role="MyUser" EntitySet="MyUsers" />
+      <End Role="MyLike" EntitySet="MyLikes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyLike_Post" Association="Self.FK_MyLike_Post">
+      <End Role="Post" EntitySet="Posts" />
+      <End Role="MyLike" EntitySet="MyLikes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_UserName" Association="Self.FK_Post_UserName">
+      <End Role="MyUser" EntitySet="MyUsers" />
+      <End Role="Post" EntitySet="Posts" />
+    </AssociationSet>
+    <EntitySet Name="MyFollows" EntityType="SocialNetDBModel.MyFollow" />
+    <AssociationSet Name="FK_Follows_FollowerUserName1" Association="SocialNetDBModel.FK_Follows_FollowerUserName1">
+      <End Role="MyUser" EntitySet="MyUsers" />
+      <End Role="MyFollow" EntitySet="MyFollows" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyFollower_MyUser1" Association="SocialNetDBModel.FK_MyFollower_MyUser1">
+      <End Role="MyUser" EntitySet="MyUsers" />
+      <End Role="MyFollow" EntitySet="MyFollows" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="MyFollow">
+    <Key>
+      <PropertyRef Name="fid" />
+    </Key>
+    <Property Name="fid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="followerusername" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="followingusername" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MyUser" Relationship="SocialNetDBModel.FK_Follows_FollowerUserName1" FromRole="MyFollow" ToRole="MyUser" />
+    <NavigationProperty Name="MyUser1" Relationship="SocialNetDBModel.FK_MyFollower_MyUser1" FromRole="MyFollow" ToRole="MyUser" />
+  </EntityType>
+  <Association Name="FK_Follows_FollowerUserName1">
+    <End Type="SocialNetDBModel.MyUser" Role="MyUser" Multiplicity="1" />
+    <End Type="SocialNetDBModel.MyFollow" Role="MyFollow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyUser">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="MyFollow">
+        <PropertyRef Name="followerusername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyFollower_MyUser1">
+    <End Type="SocialNetDBModel.MyUser" Role="MyUser" Multiplicity="1" />
+    <End Type="SocialNetDBModel.MyFollow" Role="MyFollow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyUser">
+        <PropertyRef Name="username" />
+      </Principal>
+      <Dependent Role="MyFollow">
+        <PropertyRef Name="followingusername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
